@@ -289,9 +289,13 @@
                 // --- Security Verification Logic ---
         async function generarHashSeguretat() {
             try {
-                // En lloc de fer fetch (que pot fallar en Safari mòbil),
-                // llegim el contingut que el navegador ja ha renderitzat.
-                const text = document.documentElement.outerHTML;
+                // AFEGIM UN "CACHE-BUSTER" (?t=...) perquè l'iPhone no agafi una versió vella
+                const urlNeta = window.location.href.split('#')[0].split('?')[0] + '?t=' + Date.now();
+        
+                const response = await fetch(urlNeta);
+                if (!response.ok) throw new Error("No s'ha pogut carregar el fitxer");
+        
+                const text = await response.text();
         
                 const encoder = new TextEncoder();
                 const data = encoder.encode(text);
@@ -303,16 +307,11 @@
                 display.innerText = hashHex;
                 display.style.color = "#4CAF50";
         
-                // Intentar copiar al porta-retalls (Safari de vegades requereix interacció humana directa)
-                try {
-                    await navigator.clipboard.writeText(hashHex);
-                    alert("Codi verificat i copiat!");
-                } catch (e) {
-                    alert("Codi generat! Compara els últims digits: " + hashHex.substring(hashHex.length - 8));
-                }
+                await navigator.clipboard.writeText(hashHex);
+                alert("Codi FIX generat: " + hashHex.substring(0, 8) + "...");
             } catch (err) {
-                console.error("Error encriptació:", err);
-                alert("El teu dispositiu no permet la verificació encriptada.");
+                console.error(err);
+                alert("Error: Safari requereix HTTPS (GitHub Pages) per verificar el fitxer original.");
             }
         }
 
