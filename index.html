@@ -96,14 +96,12 @@
 
     <div id="notification" class="notification"></div>
 
-    <div style="margin: 20px; padding: 15px; border: 2px dashed rgba(255,255,255,0.3); border-radius: 10px; background: rgba(0,0,0,0.4); text-align: center;">
-    <h3 style="font-size: 14px; color: #ffeb3b; margin-bottom: 8px;">🛡️ Verificació d'Integritat (S1)</h3>
-    <p style="font-size: 11px; margin-bottom: 10px; opacity: 0.8;">Prem per confirmar que el codi no ha estat modificat.</p>
-    <button onclick="generarHashSeguretat()" style="background: #607D8B; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
-        VERIFICAR ARA
-    </button>
-    <div id="hash-display" style="margin-top: 10px; font-family: monospace; font-size: 9px; word-break: break-all; background: #000; padding: 5px; border-radius: 4px;">----</div>
-</div>
+    <div style="margin: 10px; padding: 10px; text-align: center;">
+        <button onclick="generarHashSeguretat()" style="background: rgba(96, 125, 139, 0.7); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; width: 100%; max-width: 300px;">
+            🛡️ VERIFICACIÓ D'INTEGRITAT (S1)
+        </button>
+        <div id="hash-display" style="margin-top: 6px; font-family: monospace; font-size: 10px; word-break: break-all; color: #4CAF50; background: rgba(0,0,0,0.5); padding: 4px; border-radius: 4px; min-height: 12px;"></div>
+    </div>
 
     <script>
         // CONFIGURACIÓ ÚNICA
